@@ -3,7 +3,7 @@ name: xs-sdd-pm
 description: Write a PRD.md spec for a significant hardware feature in xs-sdd, focused on feature-level behavior and validation. Use when the user asks for a hardware PRD, product requirements spec, desired behavior doc, or wants to define hardware feature behavior before implementation, especially when the hardware feature is substantial or behaviorally ambiguous enough that a written spec would improve design, implementation, or review.
 allowed-tools: Read, Write, Edit, Glob, Grep, Agent, AskUserQuestion
 metadata:
-  shared-rules: "ears-format.md"
+  shared-rules: "ears-format.md, requirements-review-gate.md"
 ---
 
 # xs-sdd-pm Skill

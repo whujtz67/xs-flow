@@ -1,9 +1,3 @@
----
-编者注: 考虑到当前 AI 能力已有明显提升，一些简单的结构性问题通常不容易出错；而语义正确性、用户真实意图、领域完整性等更高层次的质量问题，AI 往往较难通过自查发现。因此，为减少不必要的迭代和 Token 消耗，xs-sdd-pm 不会默认启用 Requirements Review Gate 进行自查。
-
-不过，该规则本身具有较好的参考价值，因此仍会保留在 xs-sdd-pm 的规则库中。若用户有需要，可以主动调用该规则，对需求草稿进行评审和修复，直到评审通过或者发现确实存在需要用户澄清的范围模糊问题为止。
----
-
 # Requirements Review Gate
 
 Before writing `PRD.md`, review the draft requirements and repair local issues until the draft passes or a true scope ambiguity is discovered.
