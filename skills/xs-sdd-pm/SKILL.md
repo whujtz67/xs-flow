@@ -30,24 +30,6 @@ It should provide a consistent, clear, and reliable feature-level understanding 
 
 ### Target File
 
-### Target File
-
-Write specs to `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`, where `<feature-rel-path>` is the normalized, source-relative logical path of the target hardware feature.
-
-The `<feature-rel-path>` should be derived from the feature's module/file location or ownership hierarchy, relative to the relevant source or RTL root. Omit language-specific source roots, file extensions, and other incidental repository prefixes. Preserve enough hierarchy to avoid name collisions and make the spec easy to locate.
-
-For a feature spanning multiple tightly related modules, use the lowest common logical subsystem path plus the primary feature name.
-
-If no source file exists yet, infer the path from the intended subsystem, feature namespace, or user-provided module hierarchy. Ask the user to clarify if the path would be ambiguous.
-
-For example:
-
-- Source file: `src/main/scala/silkygs/ppu/mtd/Dispatcher.scala`
-- Feature relative path: `silkygs/ppu/mtd/Dispatcher`
-- Target PRD: `${PRJ_DIR}/specs/silkygs/ppu/mtd/Dispatcher/PRD.md`
-
-### Target File
-
 Write specs to `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`, where `<feature-rel-path>` is the normalized, source-relative logical path of the target hardware feature.
 
 Derive `<feature-rel-path>` from the feature's module/file location or ownership hierarchy, relative to the relevant source or RTL root. Omit language-specific source roots, file extensions, and incidental repository prefixes. Preserve enough hierarchy to avoid name collisions and make the spec easy to locate.
@@ -79,11 +61,44 @@ For example:
 - You may mention a needed FSM or pipeline and summarize major states or stages, but do not specify detailed implementation logic.
 - Your job is to produce a detailed `PRD.md` describing what role the target hardware feature plays in the system, what behavior it must guarantee, and what constraints it must satisfy.
 
-**Litmus test**:
+#### Litmus test
 
 - If an EARS acceptance criterion is essentially code written in natural language, or if an AI could directly translate it into precise code without needing any additional context or design inference, it is too implementation-specific and belongs in `TECH.md`.
 
-- A `PRD.md` requirement should stay at the feature-behavior level: it should describe functional intent, externally visible guarantees, and important constraints, but it should not be detailed enough to generate accurate code by itself.
+### PRD Scope: WHAT and WHY, not HOW
+
+- Be as explicit as possible about what you are trying to build and why. Do not focus on the tech stack at this point.
+- Do not dive into implementation details (parameters, IO interfaces, wires/regs, bundles, functions, signal-level logic, LUT/FSM/pipeline implementation details, etc.) or write code directly.
+- You may mention a needed FSM or pipeline and summarize major states or stages, but do not specify detailed implementation logic.
+- Your job is to produce a detailed `PRD.md` describing what role the target hardware feature plays in the system, what behavior it must guarantee, and what constraints it must satisfy.
+
+#### Litmus test
+
+- If an EARS acceptance criterion is essentially code written in natural language, or if an AI could directly translate it into precise code without needing any additional context or design inference, it is too implementation-specific and belongs in `TECH.md`.
+
+#### Defensive Workflow Mechanism: Implementation Detail Stash
+
+The ideal input for this skill is PRD-level requirement intent, but real user prompts may still contain mixed-level details.
+
+When the user's prompt contains implementation-level details that are too specific for `PRD.md` but may be useful for later technical design, preserve them in `${PRJ_DIR}/specs/<feature-rel-path>/TECH.stash.md`.
+
+`TECH.stash.md` is a non-normative PM-to-Architect handoff artifact. It is not part of the PRD, not the final `TECH.md`, and not a binding design decision.
+
+For implementation-level details mentioned in the user's prompt:
+
+- Abstract the underlying WHAT/WHY intent into `PRD.md` when it affects PRD-level behavior or constraints.
+- Preserve the concrete HOW-level details in `TECH.stash.md`.
+
+Do not silently turn implementation preferences into PRD requirements.
+Do not silently discard implementation details that may encode important technical intent.
+
+##### When to write TECH.stash.md
+
+At **ANY** PRD-related stage, if the user's prompt contains implementation-level details that are too specific for `PRD.md` and have not been captured in `TECH.stash.md`, always preserve them in `TECH.stash.md`.
+
+If `TECH.stash.md` does not exist yet, read `templates/TECH.stash.md` from this skill's directory and create it.
+
+Do not require the user to restate these implementation details later.
 
 ### Mandatory Constraints
 
@@ -109,7 +124,7 @@ For example:
 
 If steering/spec context is already available from conversation, skip redundant file reads.
 Otherwise, load all necessary context:
-- Read `${PRJ_DIR}/specs/{feature}/PRD.md`(if exists) for project description
+- Read `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`(if exists) for project description
 - Project-level steering context: `${PRJ_DIR}/specs/TOP.md`(if exists)
 - Relevant local agent skills or playbooks only when they clearly match the feature's host environment or use case and contain domain terminology or workflow rules that shape user-observable requirements
 
@@ -201,7 +216,7 @@ Once confirmed, treat the `Introduction` as the stable global context for the la
 ### Step 4: Complete the Full PRD
 
 #### Load Inputs
-- Read the existing `specs/<feature>/PRD.md` produced by Step 3
+- Read the existing `specs/<feature-rel-path>/PRD.md` produced by Step 3
 - Read `templates/PRD.full.md` from this skill's directory for the remaining PRD structure
 - Read `rules/ears-format.md` from this skill's directory for EARS syntax rules
 
@@ -225,7 +240,7 @@ If the `Introduction` is missing, incomplete, unconfirmed, or still contains unr
 - Ask as many questions as needed; never fill gaps with your own assumptions.
 
 ### Step 6: Finalize and Update Metadata
-- Write `${PRJ_DIR}/specs/{feature}/PRD.md` only after the requirements review gate passes
+- Write `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md` only after the requirements review gate passes
 
 </instructions>
 
@@ -237,8 +252,10 @@ Do not summarize, explain, or repeat the generated PRD content in chat. The purp
 
 Only create or update:
 
-`${PRJ_DIR}/specs/<feature>/PRD.md`
+**mandatory**: `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`
 
-After the file is written, return only:
+**optional**: `${PRJ_DIR}/specs/<feature-rel-path>/TECH.stash.md`
+
+After the files are written, return only:
 
 `Done.`
