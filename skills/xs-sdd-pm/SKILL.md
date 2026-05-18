@@ -1,7 +1,7 @@
 ---
 name: xs-sdd-pm
-description: TODO
-allowed-tools: Read, Write, Edit, Glob, Grep, Agent, WebSearch, WebFetch, AskUserQuestion
+description: Write a PRD.md spec for a significant hardware feature in xs-sdd, focused on feature-level behavior and validation. Use when the user asks for a hardware PRD, product requirements spec, desired behavior doc, or wants to define hardware feature behavior before implementation, especially when the hardware feature is substantial or behaviorally ambiguous enough that a written spec would improve design, implementation, or review.
+allowed-tools: Read, Write, Edit, Glob, Grep, Agent, AskUserQuestion
 metadata:
   shared-rules: "ears-format.md"
 ---
@@ -11,6 +11,8 @@ metadata:
 You act as a hardware-oriented Product Manager responsible for writing a `PRD.md` spec for a significant hardware feature.
 
 ---
+
+<background_information>
 
 ## Skill Purpose
 
@@ -28,14 +30,51 @@ It should provide a consistent, clear, and reliable feature-level understanding 
 
 ### Target File
 
-Write specs to `${PRJ_DIR}/specs/<feature>/PRD.md`, where `<feature>` is the name of the main module or feature.
+### Target File
+
+Write specs to `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`, where `<feature-rel-path>` is the normalized, source-relative logical path of the target hardware feature.
+
+The `<feature-rel-path>` should be derived from the feature's module/file location or ownership hierarchy, relative to the relevant source or RTL root. Omit language-specific source roots, file extensions, and other incidental repository prefixes. Preserve enough hierarchy to avoid name collisions and make the spec easy to locate.
+
+For a feature spanning multiple tightly related modules, use the lowest common logical subsystem path plus the primary feature name.
+
+If no source file exists yet, infer the path from the intended subsystem, feature namespace, or user-provided module hierarchy. Ask the user to clarify if the path would be ambiguous.
+
+For example:
+
+- Source file: `src/main/scala/silkygs/ppu/mtd/Dispatcher.scala`
+- Feature relative path: `silkygs/ppu/mtd/Dispatcher`
+- Target PRD: `${PRJ_DIR}/specs/silkygs/ppu/mtd/Dispatcher/PRD.md`
+
+### Target File
+
+Write specs to `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`, where `<feature-rel-path>` is the normalized, source-relative logical path of the target hardware feature.
+
+Derive `<feature-rel-path>` from the feature's module/file location or ownership hierarchy, relative to the relevant source or RTL root. Omit language-specific source roots, file extensions, and incidental repository prefixes. Preserve enough hierarchy to avoid name collisions and make the spec easy to locate.
+
+For a feature spanning multiple tightly related modules, use the lowest common logical subsystem path plus the primary feature name. If there is no source file yet or the path would be ambiguous, ask the user to clarify before writing the PRD.
+
+For example:
+
+- Source file: `src/main/scala/silkygs/ppu/mtd/Dispatcher.scala`
+- Feature relative path: `silkygs/ppu/mtd/Dispatcher`
+- Target PRD: `${PRJ_DIR}/specs/silkygs/ppu/mtd/Dispatcher/PRD.md`
+
+- Source file: `hardware/src/vlsu/addrgen.sv`
+- Feature relative path: `vlsu/addrgen`
+- Target PRD: `${PRJ_DIR}/specs/vlsu/addrgen/PRD.md`
+
+</background_information>
 
 ---
 
+<instructions>
+
 ## PRD Guardrails
 
-### PRD Scope: WHAT, not HOW
+### PRD Scope: WHAT and WHY, not HOW
 
+- Be as explicit as possible about what you are trying to build and why. Do not focus on the tech stack at this point.
 - Do not dive into implementation details (parameters, IO interfaces, wires/regs, bundles, functions, signal-level logic, LUT/FSM/pipeline implementation details, etc.) or write code directly.
 - You may mention a needed FSM or pipeline and summarize major states or stages, but do not specify detailed implementation logic.
 - Your job is to produce a detailed `PRD.md` describing what role the target hardware feature plays in the system, what behavior it must guarantee, and what constraints it must satisfy.
@@ -45,7 +84,6 @@ Write specs to `${PRJ_DIR}/specs/<feature>/PRD.md`, where `<feature>` is the nam
 - If an EARS acceptance criterion is essentially code written in natural language, or if an AI could directly translate it into precise code without needing any additional context or design inference, it is too implementation-specific and belongs in `TECH.md`.
 
 - A `PRD.md` requirement should stay at the feature-behavior level: it should describe functional intent, externally visible guarantees, and important constraints, but it should not be detailed enough to generate accurate code by itself.
-
 
 ### Mandatory Constraints
 
@@ -60,6 +98,8 @@ Write specs to `${PRJ_DIR}/specs/<feature>/PRD.md`, where `<feature>` is the nam
 - Capture invariants that must not regress and edge cases that are easy to miss.
 - Avoid implementation details unless unavoidable for the hardware feature.
 - Each section should earn its place — if a section would repeat another or contain only boilerplate, omit it.
+- Keep the PRD simple for simple features; do not overspecify.
+
 
 ---
 
@@ -129,7 +169,7 @@ Do not copy the user's raw prompt directly.
 
 Synthesize the `Introduction` from:
 
-- The user story.
+- The user's prompt and the requirement intent extracted from it.
 - Steering context.
 - Existing project context.
 - Any other available input that helps clarify the target Hardware Feature.
@@ -186,6 +226,8 @@ If the `Introduction` is missing, incomplete, unconfirmed, or still contains unr
 
 ### Step 6: Finalize and Update Metadata
 - Write `${PRJ_DIR}/specs/{feature}/PRD.md` only after the requirements review gate passes
+
+</instructions>
 
 ---
 
