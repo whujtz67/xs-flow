@@ -46,13 +46,13 @@ Omit if the Function calls no other Function.
 ## Intermediate Variables (Optional)
 
 <!--
-Use this table to describe intermediate variables defined inside the function body, such as local `val`s or temporary expressions.
+Use this table to describe intermediate variables defined inside the function body.
 Omit if the Function defines no meaningful intermediate variable.
 -->
 
-| Intermediate Variable | Type | Meaning |
-|---|---|---|
-| `<intermediate-variable>` | `<type>` | `<meaning>` |
+| Intermediate Variable | Type | Source | Meaning |
+|---|---|---|---|
+| `<intermediate-variable>` | `<type>` | `<how-this-variable-is-produced>` | `<meaning>` |
 
 ## Primary Expressions
 
