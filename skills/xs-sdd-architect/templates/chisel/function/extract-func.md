@@ -1,0 +1,99 @@
+# Extract Method Function Spec Template
+
+<!--
+Extract Method extracts a long or comment-needed code block into a named Function. Its core idea is to extract a long block of code, or a block of code whose purpose would otherwise require explanatory comments, into a separate function, and to use the name of that function to clearly express its intent.
+-->
+
+## Function Summary
+
+<!--
+Describe the Function identity and extracted purpose.
+-->
+
+| Item | Content |
+|---|---|
+| Function Type | Extract Method |
+| Function Declaration | <!-- Exact declaration, e.g. `private def updateEntry(entry: EntryBundle, req: ReqBundle): Unit`. --> |
+| Function Semantics | <!-- What behavior this Function encapsulates. --> |
+| Extraction Purpose | <!-- Why this logic is extracted instead of written inline. --> |
+| Return Type | <!-- Exact return type, e.g. `Unit`, `Bool`, `UInt`, `TaskBundle`, or `(Bool, UInt)`. --> |
+
+## Input Arguments (Optional)
+
+<!--
+Omit if the Function has no input arguments.
+-->
+
+| Argument | Type | Description |
+|---|---|---|
+| `<argument-name>` | `<argument-type>` | `<argument-description>` |
+
+## Direct Callees (Optional)
+
+<!--
+Use this table to describe other Functions directly called inside the body of this function.
+Omit if the Function calls no other Function.
+-->
+
+| Function | Function Type | Return Type | Dependency Description |
+|---|---|---|---|
+| `<function-name>` | `<function-type>` | `<return-type>` | `<how-this-function-uses-the-callee-result>` |
+
+## Intermediate Variables (Optional)
+
+<!--
+Use this table to describe intermediate variables defined inside the function body, such as local `val`s or temporary expressions.
+Omit if the Function defines no meaningful intermediate variable.
+-->
+
+| Intermediate Variable | Type | Meaning |
+|---|---|---|
+| `<intermediate-variable>` | `<type>` | `<meaning>` |
+
+## Return (Optional)
+
+<!--
+Omit if the Function return type is `Unit`.
+-->
+
+| Output Variable | Type | Source  | Meaning |
+|---|---|---|---|
+| `<output-variable-or-return-value>` | `<type>` | `<how-this-output-is-produced>` | `<meaning-of-this-output>` |
+
+## Behavior Description
+
+<!--
+Describe the extracted logic as a short behavior flow.
+Choose steps according to the actual Function body.
+For non-Unit Functions, show how the return value is produced.
+For Unit Functions, show what side effect or assignment is completed.
+-->
+
+### Behavior Flow
+
+```text
+<function-name>
+├── Step 1: <first-logical-stage>
+├── Step 2: <next-logical-stage>
+├── ...
+└── Step N: <final-return-or-completed-side-effect>
+```
+
+### Step Details
+
+<!--
+Expand each step in the Behavior Flow.
+Each Step Detail must correspond to one step above.
+-->
+
+#### Step 1: `<first-logical-stage>`
+
+`<explain-step-1-in-detail>`
+
+#### Step 2: `<next-logical-stage>`
+
+`<explain-step-2-in-detail>`
+
+#### Step N: `<final-return-or-completed-side-effect>`
+
+`<explain-final-step-in-detail>`
