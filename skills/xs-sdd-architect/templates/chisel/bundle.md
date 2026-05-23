@@ -34,7 +34,7 @@ Each Function in this Bundle must be described.
 For each Function, add one subsection here using the corresponding Function Spec Template.
 
 For each Function, select the corresponding Function Spec Template through:
-`templates/chisel/function/function.md` from this skill's directory
+`templates/chisel/function/entry.md` from this skill's directory
 
 That file provides the function type classification rules and the path to each specific Function template.
 
