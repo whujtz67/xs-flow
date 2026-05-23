@@ -126,6 +126,7 @@ If steering/spec context is already available from conversation, skip redundant 
 Otherwise, load all necessary context:
 - Read `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`(if exists) for project description
 - Project-level steering context: `${PRJ_DIR}/specs/TOP.md`(if exists)
+- User-provided arguments
 - Relevant local agent skills or playbooks only when they clearly match the feature's host environment or use case and contain domain terminology or workflow rules that shape user-observable requirements
 
 #### Parallel Research (subagent dispatch)
