@@ -4,6 +4,8 @@
 Use this template to describe a Chisel Bundle, including its parameters, fields, and Functions.
 -->
 
+`<path-of-the-bundle>`
+
 ## Parameters
 
 <!--
