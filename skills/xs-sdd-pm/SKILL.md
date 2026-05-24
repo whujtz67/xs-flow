@@ -104,6 +104,12 @@ Do not require the user to restate these implementation details later.
 - Each section should earn its place — if a section would repeat another or contain only boilerplate, omit it.
 - Keep the PRD simple for simple features; do not overspecify.
 
+### User Feedback Handling Rules
+
+- Proceed to the next step only after the user explicitly confirms that they have no remaining objections.
+- If the user raises any objection, revise the relevant content accordingly and ask for confirmation again until no objection remains.
+- If the user manually edits any generated content, treat the user's version as authoritative. Re-read the modified file, correct any previous misunderstanding, and use the user-edited version as the basis for all subsequent work.
+- If the user only makes manual edits without raising any objection, treat the edited version as confirmed.
 
 ---
 
@@ -202,6 +208,8 @@ Ask as many questions as needed; never fill gaps with your own assumptions.
 Do not proceed to generate the full `PRD.md` until the user explicitly confirms that the `Introduction` is satisfactory.
 
 Once confirmed, treat the `Introduction` as the stable global context for the later `PRD.md`. Do not silently change its core meaning during full PRD generation unless the user provides new clarification.
+
+If the user confirms the Introduction, or edits it manually without requesting further Introduction review, continue to Step 4 in the same turn. Do not stop after the Introduction stage and do not output `Done.`.
 
 ### Step 4: Complete the Full PRD
 
