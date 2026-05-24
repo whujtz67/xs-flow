@@ -234,6 +234,20 @@ Use an ordered list so that each non-zero default can be explained precisely.
 
    `<default-meaning>`
 
+## State Machine (Optional)
+
+<!--
+If this Module contains FSM logic, describe each FSM here using:
+`templates/chisel/module/fsm.md` from this skill's directory
+
+Use one subsection for each FSM.
+If this Module has no FSM, write `None.`
+-->
+
+### `<fsm-name>`
+
+<!-- Inline-expand `templates/chisel/module/fsm.md` here. -->
+
 ## Main Logic
 
 <!--
@@ -462,3 +476,5 @@ If there is no remaining output assignment, write `None.`
 | Output | Source | Description |
 |---|---|---|
 | `<io.output-name>` | `<source-or-expression>` | `<description>` |
+
+
