@@ -248,12 +248,19 @@ If the `Introduction` is missing, incomplete, unconfirmed, or still contains unr
 
 Do not summarize, explain, or repeat the generated PRD content in chat. The purpose is to avoid wasting output tokens and API cost on text outside the actual spec document.
 
-Only create or update:
+If clarification is required, ask the user before editing any file. Ask at most 3 questions at once, using an ordered list. Do not create or modify files until the required clarification is complete.
+
+Once enough information has been collected, only create or update:
 
 **mandatory**: `${PRJ_DIR}/specs/<feature-rel-path>/PRD.md`
 
 **optional**: `${PRJ_DIR}/specs/<feature-rel-path>/TECH.stash.md`
 
-After the files are written, return only:
+After writing files, ask the user to confirm whether the new or updated content accurately reflects their intent.
+
+After user confirmation:
+
+- If the workflow is still at an intermediate step, tell the user what the next step is and ask them to proceed.
+- If the workflow has reached the final step and the user has no remaining objections, return only:
 
 `Done.`
