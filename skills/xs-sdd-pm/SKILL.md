@@ -63,18 +63,7 @@ For example:
 
 #### Litmus test
 
-- If an EARS acceptance criterion is essentially code written in natural language, or if an AI could directly translate it into precise code without needing any additional context or design inference, it is too implementation-specific and belongs in `TECH.md`.
-
-### PRD Scope: WHAT and WHY, not HOW
-
-- Be as explicit as possible about what you are trying to build and why. Do not focus on the tech stack at this point.
-- Do not dive into implementation details (parameters, IO interfaces, wires/regs, bundles, functions, signal-level logic, LUT/FSM/pipeline implementation details, etc.) or write code directly.
-- You may mention a needed FSM or pipeline and summarize major states or stages, but do not specify detailed implementation logic.
-- Your job is to produce a detailed `PRD.md` describing what role the target hardware feature plays in the system, what behavior it must guarantee, and what constraints it must satisfy.
-
-#### Litmus test
-
-- If an EARS acceptance criterion is essentially code written in natural language, or if an AI could directly translate it into precise code without needing any additional context or design inference, it is too implementation-specific and belongs in `TECH.md`.
+- If an EARS acceptance criterion is essentially code written in natural language, or if an AI could directly translate it into precise code without needing any additional context or design inference, it is too implementation-specific and belongs in `TECH specs`.
 
 #### Defensive Workflow Mechanism: Implementation Detail Stash
 
@@ -82,7 +71,7 @@ The ideal input for this skill is PRD-level requirement intent, but real user pr
 
 When the user's prompt contains implementation-level details that are too specific for `PRD.md` but may be useful for later technical design, preserve them in `${PRJ_DIR}/specs/<feature-rel-path>/TECH.stash.md`.
 
-`TECH.stash.md` is a non-normative PM-to-Architect handoff artifact. It is not part of the PRD, not the final `TECH.md`, and not a binding design decision.
+`TECH.stash.md` is a non-normative PM-to-Architect handoff artifact. It is not part of the PRD, not the final `TECH specs`, and not a binding design decision.
 
 For implementation-level details mentioned in the user's prompt:
 
@@ -103,7 +92,7 @@ Do not require the user to restate these implementation details later.
 ### Mandatory Constraints
 
 - If needed, ask the user to clarify before proceeding. Never guess.
-- The PRD spec should make the desired behavior unambiguous enough that downstream agents can write the technical spec `TECH.md`. 
+- The PRD spec should make the desired behavior unambiguous enough that downstream agents can write the technical specs. 
 - Unlike software, hardware requirements must be written with constant awareness of circuit complexity, PPA trade-offs, and timing feasibility. 
 
 ### Writing guidance
