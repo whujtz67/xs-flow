@@ -54,6 +54,14 @@ Keep key technical terms, class names, signal names, file paths, project-specifi
 
 Do not repeatedly translate project-specific terminology back and forth across languages.
 
+### Information Preservation Rules
+
+Do not drop any user-provided information.
+
+If a detail does not fit any explicit template field, place it in the nearest suitable `Meaning`, `Description` or dedicated clarification note, and mark it with `**SAVE**`.
+
+Never omit user-provided information merely because the current template does not have an explicit field for it.
+
 <instructions>
 
 ## **Core Constraints**
