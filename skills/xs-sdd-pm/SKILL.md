@@ -24,8 +24,7 @@ It should provide a consistent, clear, and reliable feature-level understanding 
 
 ### Target Feature Scale
 
-- `xs-sdd` must be strictly scoped to a single RTL module or a small number of tightly related RTL modules. It must not attempt to generate broad system-level specs for large and complex hardware systems in one pass.
-- Because current SOTA LLMs are still unreliable for complete system-level hardware design, broad specs often become shallow, ambiguous, and hard for downstream Impl AI to execute.
+- `xs-sdd` targets one central RTL module at a time. It must not attempt to generate broad system-level specs for large and complex hardware systems in one pass.
 - `xs-sdd` should prioritize high-quality, fine-grained spec generation within a limited module scope.
 
 ### Target File

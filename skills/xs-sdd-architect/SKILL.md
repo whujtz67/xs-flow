@@ -92,7 +92,7 @@ Load exactly these baseline templates:
 Conditionally load only:
 
 - If the central module clearly contains FSM: `templates/chisel/module/fsm.md`
-- If the central module clearly contains pipeline: TODO (Pipeline Template hasn't been written, the module should not contain any pipeline currently at test stage.)
+- If the central module clearly contains pipeline: `templates/chisel/module/pipe.md`
 
 Do not load any other template in this step.
 
@@ -192,6 +192,8 @@ Apply the **Topic Freeze Protocol**.
 
 Generate this step only if FSM specs are required by the confirmed TECH spec set plan. If no FSM is required, skip this step.
 
+Generate each FSM spec according to `templates/chisel/module/fsm.md` from the skill directory.
+
 Generate exactly one spec file for each FSM under `new/module/fsm/`.
 
 Each file must describe exactly one FSM and use this path format:
@@ -208,6 +210,8 @@ Apply the **Topic Freeze Protocol** to each FSM spec before generating the next 
 
 Generate this step only if Pipeline specs are required by the confirmed TECH spec set plan. If no Pipeline is required, skip this step.
 
+Generate each Pipeline spec according to `templates/chisel/module/pipe.md` from the skill directory.
+
 Generate Pipeline specs one by one. For each pass, generate exactly one Pipeline spec file under `new/module/pipe/`.
 
 Each file must describe exactly one Pipeline and use this path format:
@@ -223,6 +227,8 @@ Apply the **Topic Freeze Protocol** to each Pipeline spec.
 #### Step 5.6: Generate `new/module/main_logic/` Specs
 
 Generate Main Logic specs one by one, following the block split confirmed in the TECH spec set plan.
+
+Generate each Main Logic spec according to `templates/chisel/module/main_logic.md` from the skill directory.
 
 For each pass, generate exactly one Main Logic spec file under `new/module/main_logic/`.
 
