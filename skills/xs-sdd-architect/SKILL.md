@@ -108,7 +108,7 @@ Print `Step 1 Done`.
 
 Load exactly these baseline templates:
 
-- `templates/chisel/module/module.md`
+- `templates/chisel/module/top.md`
 - `templates/chisel/parameter.md`
 - `templates/chisel/bundle.md`
 
