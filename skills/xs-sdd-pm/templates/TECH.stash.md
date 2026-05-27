@@ -17,15 +17,15 @@ Keep the original technical intent complete.
 Do not over-format or over-interpret the user's implementation details.
 -->
 
-### Item 1
+### Item 1: {{DESCRIPTION}}
 
 {{IMPLEMENTATION_DETAIL_1}}
 
-### Item 2
+### Item 2: {{DESCRIPTION}}
 
 {{IMPLEMENTATION_DETAIL_2}}
 
-### Item 3
+### Item 3: {{DESCRIPTION}}
 
 {{IMPLEMENTATION_DETAIL_3}}
 

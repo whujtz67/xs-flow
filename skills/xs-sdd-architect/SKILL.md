@@ -304,7 +304,9 @@ After all `new/module/top.md` subtopics are approved and frozen as golden, final
 
 Do not summarize, explain, or repeat the generated TECH spec content in chat.
 
-Only create or update files under:
+Sometimes the user may provide temporary notes, unresolved ideas, side observations, etc. that should be preserved but does not yet belong to any generated TECH spec file. In that case, you may create a subsection and store it under the `User Scratchpad` section in `${PRJ_DIR}/specs/<feature-rel-path>/TECH.stash.md`.
+
+Except for this `TECH.stash.md` scratchpad case, only create or update files under:
 
 `${PRJ_DIR}/specs/<feature-rel-path>/TECH/`
 
