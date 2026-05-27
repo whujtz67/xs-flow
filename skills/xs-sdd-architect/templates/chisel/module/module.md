@@ -15,66 +15,47 @@ List all Bundles related to this Module.
 
 Include:
 - Public Bundles directly used by this Module.
-- Public Bundles that need to be newly specified or extended for this Module.
+- Public Bundles that need to be newly specified or modified for this Module.
 - Private Bundles defined inside this Module.
 
 If this Module does not use or define any Bundle, write `None.` under this section and omit all subsections.
 -->
 
+## Related Bundles
+
+<!--
+List Bundle references used by this Module.
+All new, modified, or module-local Bundle bodies must be specified in separate Bundle spec files, not inline-expanded here.
+Both subsections are optional. Omit any subsection that has no entries.
+If this Module does not use any Bundle, write `None.` and omit all subsections.
+-->
+
 ### Public Bundles
 
-<!--
-Public Bundles are reusable Bundle definitions outside this Module.
--->
-
 #### Existing Bundles
-
-<!--
-List existing public Bundles that are already defined and can be reused directly.
-
-Do not regenerate their specs here. Use `Path` to point to the relative source file path where the Bundle is defined, so that the Impl AI can locate it.
--->
 
 | Name | Meaning | Path |
 |---|---|---|
 | `<bundle-name>` | `<brief-meaning>` | `<relative-source-file-path>` |
 
-#### Bundles Requiring New Specs
+#### Bundles to Modify
 
-<!--
-List public Bundles whose Module-related requirements need a separate Bundle spec.
-
-This includes:
-- New Bundles that have not been implemented yet.
-- Existing Bundles that need additional fields, behavior, or feature extensions for this Module.
-
-For each listed Bundle, create a new Bundle spec file according to `templates/chisel/bundle.md`.
-
-If the Bundle is a new definition, the new spec should describe the complete Bundle.
-
-If the Bundle is an extension to an existing Bundle, the new spec must describe only the newly added or modified part required by this Module. Do not edit, rewrite, or duplicate the existing stable Bundle spec.
--->
-
-| Name | Meaning | Attr | Spec Path |
+| Name | Meaning | Existing Path | Spec Path |
 |---|---|---|---|
-| `<bundle-name>` | `<brief-meaning>` | `new` / `update` | `<relative-path-of-new-bundle-spec>` |
+| `<bundle-name>` | `<brief-meaning>` | `<relative-source-file-path>` | `modify/b_<bundle-name>.md` |
 
-### Private Bundles (Optional)
+#### New Bundles
 
-<!--
-Private Bundles are Bundle-like structures defined only for use inside this Module,
-for example through a private helper definition inside the Module.
+| Name | Meaning | Spec Path |
+|---|---|---|
+| `<bundle-name>` | `<brief-meaning>` | `new/bundle/b_<public-bundle-name>.md` |
 
-Private Bundles do not need standalone spec files.
-For each Private Bundle, add one subsection below and inline-expand the relevant
-parts of `templates/chisel/bundle.md` directly in this Module spec.
+### Module-Local Private Bundles
 
-Omit this section if the Module has no Private Bundle.
--->
-
-#### `<private-bundle-name>`
-
-<!-- Inline-expand `templates/chisel/bundle.md` here. -->
+| Name | Meaning | Spec Path |
+|---|---|---|
+| `<bundle-name>` | `<brief-meaning>` | `new/module/bundle/b_<module-local-bundle-name>.md` |
+---
 
 ## Parameters
 
@@ -111,6 +92,8 @@ For `Clock Domain`:
 |---|---|---|---|---|
 | `<io-field-name>` | `Input` / `Output` / `Flipped` / `Unflipped` | `<complete-chisel-type-or-construction-expression>` | `<clock-domain-name-or-description>` | `<description>` |
 
+---
+
 ## Submodules
 
 <!--
@@ -136,7 +119,7 @@ For `Instance Num`:
 |---|---|---|---|
 | `<instance-name>` | `<complete-chisel-module-construction-expression>` | `<instance-num-or-parameter-expression>` | `<description>` |
 
-## Wire/Reg Declaration
+---
 
 ## Wire/Reg Declaration
 
@@ -173,6 +156,8 @@ For `Update / Assignment Rule`:
 | Name | Kind | Type | Initial / Default Value | Update / Assignment Rule | Description |
 |---|---|---|---|---|---|
 | `<signal-name>` | `Wire` / `WireDefault` / `Reg` / `RegInit` / `RegNext` / `RegEnable` | `<complete-chisel-type-or-construction-expression>` | `<initial-or-default-value-or-None>` | `<assignment-or-update-rule>` | `<description>` |
+
+---
 
 ## Default Assignment
 
@@ -234,234 +219,60 @@ Use an ordered list so that each non-zero default can be explained precisely.
 
    `<default-meaning>`
 
+---
+
 ## State Machine (Optional)
 
 <!--
-If this Module contains FSM logic, describe each FSM here using:
-`templates/chisel/module/fsm.md` from this skill's directory
+List separated FSM specs used by this Module.
 
-Use one subsection for each FSM.
+Each FSM body must be specified in a separate file under:
+
+`new/module/fsm/`
+
+Do not inline-expand FSM bodies here.
+
 If this Module has no FSM, write `None.`
 -->
 
-### `<fsm-name>`
+| Name | Meaning | Spec Path |
+|---|---|---|
+| `<fsm-name>` | `<brief-meaning>` | `new/module/fsm/fsm_<fsm-name>.md` |
 
-<!-- Inline-expand `templates/chisel/module/fsm.md` here. -->
+---
 
 ## Main Logic
 
 <!--
-Describe the main combinational/control logic of this Module.
+List separated Main Logic specs used by this Module.
 
-This section should not include FSM or Pipeline behavior when those behaviors should be described in their own sections.
+Each Main Logic body must be specified in a separate file under:
 
-Main Logic may be organized flexibly according to the actual Module structure.
-Use small subsections to describe coherent pieces of logic.
+`new/module/main_logic/`
 
-Do not force every subsection to include every part. Keep simple logic simple,
-but make key control conditions explicit.
+Do not inline-expand Main Logic bodies here.
+
+Choose exactly one form below:
+1. Use `ml_main.md` when the Module has one simple Main Logic spec.
+2. Use multiple `ml_<main-logic-name>.md` entries when Main Logic is split into multiple blocks.
+
+Delete the unused form.
 -->
 
-### `<main-logic-block-name>`
+<!-- Form 1: Simple Main Logic -->
 
-<!--
-Use one subsection for each coherent logic block.
+| Name | Meaning | Spec Path |
+|---|---|---|
+| `main` | `<brief-meaning>` | `new/module/main_logic/ml_main.md` |
 
-The subsection title should describe the logic purpose, not merely restate an
-implementation detail. For example:
-- Request Selection
-- Output Response Generation
-- Bypass Decision
--->
+<!-- Form 2: Split Main Logic Blocks -->
 
-#### Purpose
+| Name | Meaning | Spec Path |
+|---|---|---|
+| `<main-logic-name-0>` | `<brief-meaning>` | `new/module/main_logic/ml_<main-logic-name-0>.md` |
+| `<main-logic-name-1>` | `<brief-meaning>` | `new/module/main_logic/ml_<main-logic-name-1>.md` |
 
-<!--
-Briefly describe what this logic block decides or assigns.
--->
-
-#### Local Private Values (Optional)
-
-<!--
-List local `private val` definitions used inside this logic block.
-
-These values are usually extracted to improve readability, reuse, or to name
-important intermediate expressions.
-
-Do not list simple one-use temporary expressions unless they clarify important
-control or datapath semantics.
--->
-
-| Name | Type | Source | Meaning |
-|---|---|---|---|
-| `<private-val-name>` | `<complete-chisel-type>` | `<expression-or-source>` | `<meaning>` |
-
-#### Key Boolean Decisions (Optional)
-
-<!--
-Use this section for important Boolean decisions that control whether a key
-action happens.
-
-This is especially useful for signals such as:
-- `canFlow`
-- `canAccept`
-- `conflict`
-- `needFlush`
-- `stall`
-
-For complex Boolean decisions, describe leaf-level Boolean conditions first, then
-describe how they are composed.
-
-If the Boolean decision is already specified as a Predicate Function in the
-Function section, do not duplicate the full Predicate Function spec here.
-Instead, reference that Function and briefly explain how this logic block uses
-its result.
--->
-
-##### Leaf-level Boolean Conditions
-
-<!--
-Use this table to describe the leaf-level Boolean conditions that compose the
-final Boolean decision.
-
-A Boolean Condition means a leaf-level Boolean-valued expression before it is
-combined with other Boolean-valued expressions by Boolean Operators. Boolean
-Operators include `AND`, `OR`, `NOT`, `XOR`, `XNOR`, `NAND`, and `NOR`.
-
-A Boolean Condition may be:
-- A comparison result, such as `a === b` or `a > b`;
-- A Boolean field, such as `a.needRelease`;
-- A reduction result, such as `Cat(vec).orR`;
-- A direct Predicate Function call result, such as `addrConflict(a, s)`.
-
-Record it as a Boolean Condition only when it directly participates in the final
-decision.
-
-Do not record larger compound Boolean expressions joined by Boolean Operators.
-For example, record `a.tag === s.metaTag` and `s.needRelease` separately, but do
-not record `(a.tag === s.metaTag) && s.needRelease` as a Boolean Condition.
--->
-
-| ID | Condition | Type | Meaning |
-|---|---|---|---|
-| `C1` | `<condition>` | `Bool` | `<meaning>` |
-| `C2` | `<condition>` | `Bool` | `<meaning>` |
-
-##### Decision Composition
-
-<!--
-Use this section to describe how the Boolean Conditions are combined to produce
-the final Boolean decision.
-
-First provide a fully parenthesized Canonical Decision Expression using the
-condition IDs defined in the Boolean Conditions table. The expression must
-preserve the exact logical structure and avoid ambiguity from operator
-precedence.
-
-Then provide a Composition Description as a logic-tree-style structure using
-Boolean Operator nodes. The Composition Description should use condition IDs and
-short semantic labels to show how the Boolean Conditions are combined. It should
-not repeat the full Boolean expression by default, because the exact expression
-binding is already defined in the Boolean Conditions table.
-
-The Composition Description must preserve the nesting relationship between
-different Boolean Operators and must remain equivalent to the Canonical Decision
-Expression.
--->
-
-**Canonical Decision Expression**
-
-`<decision-name> = <canonical-decision-expression-using-condition-ids>`
-
-**Composition Description**
-
-```text
-<decision-name>
-└── <Boolean-Operator>
-    ├── <condition-id>: <short-condition-meaning>
-    └── <Boolean-Operator>
-        ├── <condition-id>: <short-condition-meaning>
-        └── <condition-id>: <short-condition-meaning>
-```
-
-<!--
-Example:
-
-**Canonical Decision Expression**
-
-`addrConflict = C1 && (C2 || (C3 && C4)) && NOT(C5 || (C6 XOR C7) || XNOR(C8, C9) || NAND(C10, C11) || NOR(C12, C13))`
-
-**Composition Description**
-
-```text
-addrConflict
-└── AND
-    ├── C1: <meaning-of-C1>
-    ├── OR
-    │   ├── C2: <meaning-of-C2>
-    │   └── AND
-    │       ├── C3: <meaning-of-C3>
-    │       └── C4: <meaning-of-C4>
-    └── NOT
-        └── OR
-            ├── C5: <meaning-of-C5>
-            ├── XOR
-            │   ├── C6: <meaning-of-C6>
-            │   └── C7: <meaning-of-C7>
-            ├── XNOR
-            │   ├── C8: <meaning-of-C8>
-            │   └── C9: <meaning-of-C9>
-            ├── NAND
-            │   ├── C10: <meaning-of-C10>
-            │   └── C11: <meaning-of-C11>
-            └── NOR
-                ├── C12: <meaning-of-C12>
-                └── C13: <meaning-of-C13>
-```
--->
-
-#### Conditional Behavior (Optional)
-
-<!--
-Use this section to describe `when` / `elsewhen` / `otherwise` behavior.
-
-Prefer a tree-style structure over nested unordered lists because Chisel
-conditional logic is priority-ordered and may be nested. The tree should make
-the following information explicit:
-- Condition order.
-- Nesting relationship.
-- Actions under each branch.
-- Whether each branch overrides any Default Assignment.
-
-Every condition branch should describe the observable assignment or state update
-caused by that branch.
-
-The condition space must be fully covered unless one of the following is true:
-1. The uncovered cases are intentionally covered by Default Assignment, and the
-   user has confirmed that all cases other than the listed `when` / `elsewhen`
-   branches should keep the default value.
-2. The behavior of other possible condition spaces is described later in another
-   section, and the user has confirmed that all remaining cases should keep the
-   default value.
-
-If neither condition holds, explicitly add an `otherwise` behavior or a condition
-coverage note explaining the missing condition space.
--->
-
-##### Conditional Behavior Tree
-
-```text
-<logic-block-name>
-└── when <condition-1>
-    ├── Action: <assignment-or-update>
-    ├── Action: <assignment-or-update>
-    └── when <nested-condition-1>
-        └── Action: <nested-assignment-or-update>
-└── elsewhen <condition-2>
-    └── Action: <assignment-or-update>
-└── otherwise
-    └── Action: <default-preserving-action-or-explicit-assignment>
-```
+---
 
 ## Output Assignment
 
@@ -477,4 +288,12 @@ If there is no remaining output assignment, write `None.`
 |---|---|---|
 | `<io.output-name>` | `<source-or-expression>` | `<description>` |
 
+---
 
+## Register Update
+
+---
+
+## Assertions 
+
+<!-- TODO -->
