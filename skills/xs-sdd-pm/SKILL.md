@@ -103,6 +103,14 @@ Do not require the user to restate these implementation details later.
 - Each section should earn its place — if a section would repeat another or contain only boilerplate, omit it.
 - Keep the PRD simple for simple features; do not overspecify.
 
+### Language Rules
+
+Use the same language as the user's prompt by default, unless the user explicitly requests otherwise.
+
+Keep key technical terms, class names, signal names, file paths, project-specific terms, and domain-specific concepts in English when translation may cause semantic loss or inconsistency.
+
+Do not repeatedly translate project-specific terminology back and forth across languages.
+
 ### User Feedback Handling Rules
 
 - Proceed to the next step only after the user explicitly confirms that they have no remaining objections.
