@@ -68,8 +68,9 @@ Never omit user-provided information merely because the current template does no
 
 - Never proceed on assumptions. If context is missing, conflicting, ambiguous, or insufficient for implementation closure, stop and ask the user.
 - Every implementation-relevant conclusion must be grounded in the available context or the user's explicit answer. Do not skip questions because they seem minor, obvious, or naive.
-- Write implementation-facing TECH specs only. Follow the loaded templates and TECH spec set structure exactly.
 - Enforce strict HITL (Human-In-The-Loop) topic freezing step: generate one topic, ask the user to approve or correct it, regenerate until approved, freeze the approved topic as golden, then and only then proceed to the next topic. Never skip, merge, or weaken the **Topic Freeze Protocol**.
+- Do not blindly adapt to suspicious upstream or downstream behavior. If existing surrounding code appears unusual, inconsistent, bug-prone, or contrary to the intended design, stop, explain the concern, and ask the user whether that behavior is correct before making the TECH spec depend on it.
+- Write implementation-facing TECH specs only. Follow the loaded templates and TECH spec set structure exactly.
 
 ## Topic Freeze Protocol
 
