@@ -8,7 +8,7 @@ In Chisel, `fire` can be treated as a common Predicate Function: when `valid` an
 Use this template for a Function whose primary role is to produce a single Boolean decision that represents whether a specific RTL condition holds.
 -->
 
-## Function Summary
+{{H}} Function Summary
 
 <!--
 Use this table to describe the basic semantics of the Predicate Function.
@@ -22,7 +22,7 @@ Use this table to describe the basic semantics of the Predicate Function.
 | True Semantics | <!-- Describe what hardware condition is established, or what behavior is allowed / triggered, when this Function returns true. --> |
 | False Semantics | <!-- Describe what hardware condition is not established, or what behavior is disallowed / not triggered, when this Function returns false. --> |
 
-## Input Arguments (Optional)
+{{H}} Input Arguments (Optional)
 
 <!--
 Omit if the Function has no input arguments.
@@ -32,7 +32,7 @@ Omit if the Function has no input arguments.
 |---|---|---|
 | `<argument-name>` | `<argument-type>` | `<argument-description>` |
 
-## Direct Callees (Optional)
+{{H}} Direct Callees (Optional)
 
 <!--
 Use this table to describe other Functions directly called inside the body of this function.
@@ -43,7 +43,7 @@ Omit if the Function calls no other Function.
 |---|---|---|---|
 | `<function-name>` | `<function-type>` | `<return-type>` | `<describe-how-this-predicate-function-uses-the-callee-result>` |
 
-## Intermediate Variables (Optional)
+{{H}} Intermediate Variables (Optional)
 
 <!--
 Use this table to describe intermediate variables defined inside the function body.
@@ -54,7 +54,7 @@ Omit if the Function defines no meaningful intermediate variable.
 |---|---|---|---|
 | `<intermediate-variable>` | `<type>` | `<how-this-variable-is-produced>` | `<meaning>` |
 
-## Primary Expressions
+{{H}} Primary Expressions
 
 <!--
 Use this table to describe the referenced primary expressions that form the leaf-level participants of the final Boolean expression returned by the Predicate Function.
@@ -68,7 +68,7 @@ Do not record larger compound Boolean expressions in this table, such as `a.tag 
 |---|---|---|
 | `<primary-expression>` | `<type>` | `<meaning>` |
 
-## Leaf-level Boolean Conditions
+{{H}} Leaf-level Boolean Conditions
 
 <!--
 Use this table to describe the leaf-level Boolean conditions that compose the final Boolean decision returned by the Predicate Function.
@@ -94,7 +94,7 @@ Do not record larger compound Boolean expressions joined by Boolean Operators. F
 | `C2` | `<condition>` | `Bool` | `<meaning>` |
 
 
-## Behavior Description
+{{H}} Behavior Description
 
 <!--
 Use this section to describe how the Predicate Function combines its Boolean Conditions to produce the final true/false return value.

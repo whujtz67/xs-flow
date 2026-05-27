@@ -4,7 +4,7 @@
 Extract Method extracts a long or comment-needed code block into a named Function. Its core idea is to extract a long block of code, or a block of code whose purpose would otherwise require explanatory comments, into a separate function, and to use the name of that function to clearly express its intent.
 -->
 
-## Function Summary
+{{H}} Function Summary
 
 <!--
 Describe the Function identity and extracted purpose.
@@ -18,7 +18,7 @@ Describe the Function identity and extracted purpose.
 | Extraction Purpose | <!-- Why this logic is extracted instead of written inline. --> |
 | Return Type | <!-- Exact return type, e.g. `Unit`, `Bool`, `UInt`, `TaskBundle`, or `(Bool, UInt)`. --> |
 
-## Input Arguments (Optional)
+{{H}} Input Arguments (Optional)
 
 <!--
 Omit if the Function has no input arguments.
@@ -28,7 +28,7 @@ Omit if the Function has no input arguments.
 |---|---|---|
 | `<argument-name>` | `<argument-type>` | `<argument-description>` |
 
-## Direct Callees (Optional)
+{{H}} Direct Callees (Optional)
 
 <!--
 Use this table to describe other Functions directly called inside the body of this function.
@@ -39,7 +39,7 @@ Omit if the Function calls no other Function.
 |---|---|---|---|
 | `<function-name>` | `<function-type>` | `<return-type>` | `<how-this-function-uses-the-callee-result>` |
 
-## Intermediate Variables (Optional)
+{{H}} Intermediate Variables (Optional)
 
 <!--
 Use this table to describe intermediate variables defined inside the function body.
@@ -50,7 +50,7 @@ Omit if the Function defines no meaningful intermediate variable.
 |---|---|---|---|
 | `<intermediate-variable>` | `<type>` | `<how-this-variable-is-produced>` | `<meaning>` |
 
-## Return (Optional)
+{{H}} Return (Optional)
 
 <!--
 Omit if the Function return type is `Unit`.
@@ -60,7 +60,7 @@ Omit if the Function return type is `Unit`.
 |---|---|---|---|
 | `<output-variable-or-return-value>` | `<type>` | `<how-this-output-is-produced>` | `<meaning-of-this-output>` |
 
-## Behavior Description
+{{H}} Behavior Description
 
 <!--
 Describe the extracted logic as a short behavior flow.
@@ -69,7 +69,7 @@ For non-Unit Functions, show how the return value is produced.
 For Unit Functions, show what side effect or assignment is completed.
 -->
 
-### Behavior Flow
+{{H+1}} Behavior Flow
 
 ```text
 <function-name>
@@ -79,21 +79,21 @@ For Unit Functions, show what side effect or assignment is completed.
 └── Step N: <final-return-or-completed-side-effect>
 ```
 
-### Step Details
+{{H+1}} Step Details
 
 <!--
 Expand each step in the Behavior Flow.
 Each Step Detail must correspond to one step above.
 -->
 
-#### Step 1: `<first-logical-stage>`
+{{H+2}} Step 1: `<first-logical-stage>`
 
 `<explain-step-1-in-detail>`
 
-#### Step 2: `<next-logical-stage>`
+{{H+2}} Step 2: `<next-logical-stage>`
 
 `<explain-step-2-in-detail>`
 
-#### Step N: `<final-return-or-completed-side-effect>`
+{{H+2}} Step N: `<final-return-or-completed-side-effect>`
 
 `<explain-final-step-in-detail>`

@@ -4,7 +4,7 @@
 Use this template to describe elaboration-time parameters used by a Chisel structure.
 -->
 
-## Parameters
+{{H}} Parameters 
 
 <!--
 Describe the parameters used by this Bundle.
@@ -13,7 +13,7 @@ If this Bundle does not need any parameter description, write `None.` under this
 Use `require(<requirement-expression>, <failure-message>)` to enforce every parameter requirement.
 -->
 
-### Implicit Parameters (Optional)
+{{H+1}} Implicit Parameters (Optional)
 
 <!--
 Describe implicit parameters in prose.
@@ -22,7 +22,7 @@ Omit if this Bundle has no implicit parameters.
 
 `<implicit-parameter-description>`
 
-### Input Parameters (Optional)
+{{H+1}} Input Parameters (Optional)
 
 <!--
 Omit if this Bundle has no input parameters.
@@ -33,7 +33,7 @@ Leave optional cells empty if not needed.
 |---|---|---|---|---|
 | `<parameter-name>` | `<parameter-type>` | `<meaning>` | `<default-value>` | `<requirement>` |
 
-### Intermediate Parameters (Optional)
+{{H+1}} Intermediate Parameters (Optional)
 
 <!--
 Describe intermediate parameters derived at elaboration time, such as `private val`s used to compute widths, sizes, types, etc.

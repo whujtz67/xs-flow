@@ -5,7 +5,7 @@ Bundle Assignment Helper centralizes Bundle field assignment logic into a named 
 Use this template when the Function mainly creates, fills, connects, or updates a Bundle.
 -->
 
-## Function Summary
+{{H}} Function Summary
 
 <!--
 Describe the Function identity and assignment purpose.
@@ -19,7 +19,7 @@ Describe the Function identity and assignment purpose.
 | Assignment Target | <!-- The Bundle being assigned, e.g. returned Bundle, input Bundle, or `this`. --> |
 | Return | <!-- Returned value description, including name, type, source, and meaning. Use `Unit` if the Function returns nothing. --> |
 
-## Input Arguments (Optional)
+{{H}} Input Arguments (Optional)
 
 <!--
 Omit if the Function has no input arguments.
@@ -29,7 +29,7 @@ Omit if the Function has no input arguments.
 |---|---|---|
 | `<argument-name>` | `<argument-type>` | `<argument-description>` |
 
-## Direct Callees (Optional)
+{{H}} Direct Callees (Optional)
 
 <!--
 Use this table to describe other Functions directly called inside the body of this function.
@@ -40,7 +40,7 @@ Omit if the Function calls no other Function.
 |---|---|---|---|
 | `<function-name>` | `<function-type>` | `<return-type>` | `<how-this-function-uses-the-callee-result>` |
 
-## Intermediate Variables (Optional)
+{{H}} Intermediate Variables (Optional)
 
 <!--
 Use this table to describe intermediate variables defined inside the function body.
@@ -51,7 +51,7 @@ Omit if the Function defines no meaningful intermediate variable.
 |---|---|---|---|
 | `<intermediate-variable>` | `<type>` | `<how-this-variable-is-produced>` | `<meaning>` |
 
-## Behavior Description
+{{H}} Behavior Description
 
 <!--
 Describe how each assigned field is driven.

@@ -16,6 +16,8 @@ That file provides the template for implicit parameters, input parameters, inter
 If this Bundle does not need any parameter description, write `None.` under this section.
 -->
 
+<!-- Inline expansion of `templates/chisel/parameter.md` starts here. -->
+
 ## Fields
 
 <!--

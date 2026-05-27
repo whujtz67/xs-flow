@@ -31,6 +31,29 @@ The TECH spec set should serve as the implementation-facing source of truth: ide
 
 ---
 
+## Format Rules
+
+### Template Inline Expansion Heading Rules
+
+Some templates may use heading placeholders such as `{{H}}`, `{{H+1}}`, or `{{H+2}}`.
+
+For inline template expansion:
+
+- `H` is the Markdown heading level of the parent section where the template is expanded.
+- Replace every `{{H+n}}` marker with the actual Markdown heading level relative to `H`.
+- Keep the expanded content nested under the parent section.
+- Preserve the relative heading hierarchy defined by the template.
+- Do not leave any `{{H+n}}` marker in the final TECH spec.
+- If the correct heading level is ambiguous, stop and ask the user before writing the expanded spec.
+
+### Language Rules
+
+Use the same language as the user's prompt by default, unless the user explicitly requests otherwise.
+
+Keep key technical terms, class names, signal names, file paths, project-specific terms, and domain-specific concepts in English when translation may cause semantic loss or inconsistency.
+
+Do not repeatedly translate project-specific terminology back and forth across languages.
+
 <instructions>
 
 ## **Core Constraints**
