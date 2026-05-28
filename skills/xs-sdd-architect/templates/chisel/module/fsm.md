@@ -27,6 +27,22 @@ encoded value. Do not omit temporary or error states.
 |---|---|---|
 | `<state-name>` | `<encoded-value>` | `<state-meaning>` |
 
+## Topic-local Signal Declaration (Optional)
+
+<!--
+Declare only signals local to this topic spec.
+
+Do not include Module-level shared signals; those belong to `Shared Internal Signal Declaration`.
+Do not include trivial one-use temporary expressions.
+
+All entries should be implemented as `private val` bindings.
+`Kind` describes the underlying signal category, not the Scala binding keyword.
+-->
+
+| Name | Kind | Type | Initial / Default Value | Description |
+|---|---|---|---|---|
+| `<signal-name>` | `kind` | `<chisel-type-or-anon-bundle-id>` | `<initial-or-default-value-or-None>` | `<description>` |
+
 ## Transition Conditions
 
 <!--

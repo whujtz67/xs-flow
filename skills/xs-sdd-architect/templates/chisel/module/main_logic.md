@@ -25,17 +25,21 @@ Do not describe FSM or Pipeline behavior here when that behavior is separated in
 | Belongs To | `<central-module-name>` |
 | Purpose | `<what-this-logic-block-decides-or-assigns>` |
 
-## Local Private Values (Optional)
+## Topic-local Signal Declaration (Optional)
 
 <!--
-List local `private val` definitions used inside this logic block.
+Declare only signals local to this topic spec.
 
-Do not list simple one-use temporary expressions unless they clarify important control or datapath semantics.
+Do not include Module-level shared signals; those belong to `Shared Internal Signal Declaration`.
+Do not include trivial one-use temporary expressions.
+
+All entries should be implemented as `private val` bindings.
+`Kind` describes the underlying signal category, not the Scala binding keyword.
 -->
 
-| Name | Type | Source | Meaning |
-|---|---|---|---|
-| `<private-val-name>` | `<complete-chisel-type>` | `<expression-or-source>` | `<meaning>` |
+| Name | Kind | Type | Initial / Default Value | Description |
+|---|---|---|---|---|
+| `<signal-name>` | `kind` | `<chisel-type-or-anon-bundle-id>` | `<initial-or-default-value-or-None>` | `<description>` |
 
 ## Key Boolean Decisions (Optional)
 
