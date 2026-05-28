@@ -7,7 +7,7 @@ description: Write or modify Chisel code strictly according to the coding rules 
 
 When writing, modifying, or reviewing Chisel code, first read:
 
-`rules/chisel-coding-style.md`
+`rules/chisel-coding-style.md` in the skill's directory.
 
 Strictly follow every requirement in that rule file.
 
