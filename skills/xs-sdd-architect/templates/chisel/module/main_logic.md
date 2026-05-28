@@ -1,3 +1,11 @@
+---
+spec_type: 'main_logic'
+topic_name: '<main-logic-name>'
+spec_path: 'new/module/main_logic/ml_<main-logic-name>.md'
+belongs_to: '<central-module-name>'
+purpose: '<what-this-logic-block-decides-or-assigns>'
+---
+
 # Main Logic Spec Template
 
 <!--
@@ -15,15 +23,6 @@ Each file must describe exactly one Main Logic block.
 
 Do not describe FSM or Pipeline behavior here when that behavior is separated into its own FSM or Pipeline spec.
 -->
-
-## Main Logic Summary
-
-| Item | Content |
-|---|---|
-| Main Logic Name | `<main-logic-name>` |
-| Spec Path | `new/module/main_logic/ml_<main-logic-name>.md` |
-| Belongs To | `<central-module-name>` |
-| Purpose | `<what-this-logic-block-decides-or-assigns>` |
 
 ## Topic-local Signal Declaration (Optional)
 

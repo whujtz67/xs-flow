@@ -1,3 +1,11 @@
+---
+spec_type: 'fsm'
+topic_name: '<fsm-name>'
+spec_path: 'new/module/fsm/fsm_<fsm-name>.md'
+belongs_to: '<central-module-name>'
+purpose: '<what-this-fsm-controls-or-sequences>'
+---
+
 # FSM Spec Template
 
 <!--
