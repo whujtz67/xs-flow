@@ -27,7 +27,7 @@ current-state <= next-state connections. Do not describe it again here.
 <!--
 List definitions used by this topic but defined outside this topic spec.
 
-For SSOT, only record the name and definition location here.
+For SSOT (Single Source Of Truth), only record the name and definition location here.
 Do not repeat descriptions, fields, behavior, or semantics here.
 Omit any subsection that has no entries.
 If this topic has no external references, write `None.` and omit all subsections.

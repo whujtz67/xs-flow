@@ -29,7 +29,7 @@ Do not describe FSM or Pipeline behavior here when that behavior is separated in
 <!--
 List definitions used by this topic but defined outside this topic spec.
 
-For SSOT, only record the name and definition location here.
+For SSOT (Single Source Of Truth), only record the name and definition location here.
 Do not repeat descriptions, fields, behavior, or semantics here.
 Omit any subsection that has no entries.
 If this topic has no external references, write `None.` and omit all subsections.
@@ -74,11 +74,19 @@ All entries should be implemented as `private val` bindings.
 <!--
 Use this section for important Boolean decisions that control whether a key action happens.
 
+Start this section with two natural-language sentences:
+1. `What`: Describe this Key Boolean Decisions in plain language.
+2. `Why`: Explain why these Boolean decisions are needed in this Main Logic block.
+
 For complex Boolean decisions, describe leaf-level Boolean conditions first, then describe how they are composed.
 
 If the Boolean decision is already specified as a Predicate Function, do not duplicate the full Predicate Function spec here.
 Reference that Function and briefly explain how this logic block uses its result.
 -->
+
+**What**: `<natural-language-description-of-this-key-boolean-decisions>`
+
+**Why**: `<why-these-boolean-decisions-are-needed>`
 
 ### Leaf-level Boolean Conditions
 
