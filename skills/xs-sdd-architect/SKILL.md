@@ -68,11 +68,11 @@ Never omit user-provided information merely because the current template does no
 
 - Never proceed on assumptions. If context is missing, conflicting, ambiguous, or insufficient for implementation closure, stop and ask the user.
 - Every implementation-relevant conclusion must be grounded in the available context or the user's explicit answer. Do not skip questions because they seem minor, obvious, or naive.
-- Enforce strict HITL (Human-In-The-Loop) topic freezing step: generate one topic, ask the user to approve or correct it, regenerate until approved, freeze the approved topic as golden, then and only then proceed to the next topic. Never skip, merge, or weaken the **Topic Freeze Protocol**.
+- Enforce strict HITL (Human-In-The-Loop) topic freezing step: generate one topic, ask the user to approve or correct it, regenerate until approved, freeze the approved topic as golden, then and only then proceed to the next topic. Never skip, merge, or weaken the **Topic Freeze Gate**.
 - Do not blindly adapt to suspicious upstream or downstream behavior. If existing surrounding code appears unusual, inconsistent, bug-prone, or contrary to the intended design, stop, explain the concern, and ask the user whether that behavior is correct before making the TECH spec depend on it.
 - Write implementation-facing TECH specs only. Follow the loaded templates and TECH spec set structure exactly.
 
-## Topic Freeze Protocol
+## Topic Freeze Gate
 
 For each topic or subtopic:
 
@@ -199,7 +199,7 @@ Generate module-local Bundle specs one by one. For each pass, generate exactly o
 
 Do not generate or modify any other spec files in this step without the user's explicit request, except for the corresponding index entry in `new/module/top.md`.
 
-Apply the **Topic Freeze Protocol** to each module-local Bundle spec.
+Apply the **Topic Freeze Gate** to each module-local Bundle spec.
 
 #### Step 5.2: Generate `new/module/top.md` Module Surface
 
@@ -212,13 +212,13 @@ This step may generate or update only these sections:
 - `IO`
 - `Submodules`
 
-Apply the **Topic Freeze Protocol**.
+Apply the **Topic Freeze Gate**.
 
 #### Step 5.3: `Signal Declarations and Defaults`
 
 Generate only `Wire/Reg Declaration` and `Default Assignment` section in `new/module/top.md`.
 
-Apply the **Topic Freeze Protocol**.
+Apply the **Topic Freeze Gate**.
 
 #### Step 5.4: Generate `new/module/fsm/` Specs (Optional)
 
@@ -236,7 +236,7 @@ Generate FSM specs one by one. For each pass, generate exactly one FSM spec file
 
 When each FSM spec is approved, add or update only its corresponding index entry in `new/module/top.md`. Do not add the full FSM body to `top.md`.
 
-Apply the **Topic Freeze Protocol** to each FSM spec before generating the next FSM spec.
+Apply the **Topic Freeze Gate** to each FSM spec before generating the next FSM spec.
 
 #### Step 5.5: Generate `new/module/pipe/` Specs (Optional)
 
@@ -254,7 +254,7 @@ When each Pipeline spec is approved, add or update only its corresponding index 
 
 Do not generate or modify any other spec files in this step without the user's explicit request.
 
-Apply the **Topic Freeze Protocol** to each Pipeline spec.
+Apply the **Topic Freeze Gate** to each Pipeline spec.
 
 #### Step 5.6: Generate `new/module/main_logic/` Specs
 
@@ -276,7 +276,7 @@ When each Main Logic spec is approved, add or update only its corresponding inde
 
 Do not generate or modify any other spec files in this step without the user's explicit request.
 
-Apply the **Topic Freeze Protocol** to each Main Logic spec.
+Apply the **Topic Freeze Gate** to each Main Logic spec.
 
 #### Step 5.7: Generate `new/module/top.md` Output Commit and Checks
 
@@ -292,7 +292,7 @@ Do not generate or modify any other spec files in this step without the user's e
 
 If this step reveals a conflict with any golden topic, stop and ask the user whether to revise the affected golden topic.
 
-Apply the **Topic Freeze Protocol**.
+Apply the **Topic Freeze Gate**.
 
 After all `new/module/top.md` subtopics are approved and frozen as golden, finalize `new/module/top.md`. Do not rewrite approved sections during finalization unless the user explicitly approves the revision.
 
