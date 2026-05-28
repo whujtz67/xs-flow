@@ -22,6 +22,35 @@ Register update is handled uniformly at the end of the Module spec, usually as
 current-state <= next-state connections. Do not describe it again here.
 -->
 
+## External References (Optional)
+
+<!--
+List definitions used by this topic but defined outside this topic spec.
+
+For SSOT, only record the name and definition location here.
+Do not repeat descriptions, fields, behavior, or semantics here.
+Omit any subsection that has no entries.
+If this topic has no external references, write `None.` and omit all subsections.
+-->
+
+### Referenced Bundles
+
+| Name | Defined In |
+|---|---|
+| `<bundle-name-or-anon-bundle-id>` | `<definition-location>` |
+
+### Referenced Functions
+
+| Name | Defined In |
+|---|---|
+| `<function-name>` | `<definition-location>` |
+
+### Referenced Signals
+
+| Name | Defined In |
+|---|---|
+| `<signal-name>` | `<definition-location>` |
+
 ## State List
 
 <!--

@@ -24,6 +24,35 @@ Each file must describe exactly one Main Logic block.
 Do not describe FSM or Pipeline behavior here when that behavior is separated into its own FSM or Pipeline spec.
 -->
 
+## External References (Optional)
+
+<!--
+List definitions used by this topic but defined outside this topic spec.
+
+For SSOT, only record the name and definition location here.
+Do not repeat descriptions, fields, behavior, or semantics here.
+Omit any subsection that has no entries.
+If this topic has no external references, write `None.` and omit all subsections.
+-->
+
+### Referenced Bundles
+
+| Name | Defined In |
+|---|---|
+| `<bundle-name-or-anon-bundle-id>` | `<definition-location>` |
+
+### Referenced Functions
+
+| Name | Defined In |
+|---|---|
+| `<function-name>` | `<definition-location>` |
+
+### Referenced Signals
+
+| Name | Defined In |
+|---|---|
+| `<signal-name>` | `<definition-location>` |
+
 ## Topic-local Signal Declaration (Optional)
 
 <!--
