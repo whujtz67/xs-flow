@@ -132,10 +132,7 @@ For `Type`:
 - For an IO field implemented with an inline anonymous `new Bundle { ... }`:
   - Do not expand the anonymous Bundle fields in this IO table.
   - Do not invent a normal Bundle name.
-  - Use the corresponding Anonymous Bundle ID from `Related Bundles -> Inline Anonymous Bundles` in the `Type` column.
-  - The Anonymous Bundle ID must use the format `anon-bundle:io/<io-field-name>`.
-  - The actual anonymous Bundle fields must be defined exactly once in `Related Bundles -> Inline Anonymous Bundles`.
-  - The Impl AI must implement the referenced structure as an inline `new Bundle { ... }` expression at the IO use site, not as a standalone Bundle class or object.
+  - Use the corresponding Anonymous Bundle ID in the `Type` column.
 
 For `Clock Domain`:
 - If this Module has no asynchronous or cross-clock IO, use the table without `Clock Domain`.
@@ -143,7 +140,7 @@ For `Clock Domain`:
 
 | Name | Direction | Type | Clock Domain (Optional) | Description |
 |---|---|---|---|---|
-| `<io-field-name>` | `Input` / `Output` / `Flipped` / `Unflipped` | `<complete-chisel-type-or-construction-expression-or-anon-bundle-id>` | `<clock-domain-name-or-description>` | `<description>` |
+| `<io-field-name>` | `Input` / `Output` / `Flipped` / `Unflipped` | `<chisel-type-or-anon-bundle-id>` | `<clock-domain-name-or-description>` | `<description>` |
 
 ---
 
@@ -172,43 +169,49 @@ For `Instance Num`:
 |---|---|---|---|
 | `<instance-name>` | `<complete-chisel-module-construction-expression>` | `<instance-num-or-parameter-expression>` | `<description>` |
 
----
-
-## Wire/Reg Declaration
+## Shared Internal Signal Declaration
 
 <!--
-List important internal Wire and Reg declarations in this Module.
+List module-scope internal signals that are shared by multiple downstream logic specs
+or are required as common context for later behavior descriptions.
 
-This section covers Chisel declarations such as:
-- `Wire(...)`
-- `WireDefault(...)`
-- `Reg(...)`
-- `RegInit(...)`
-- `RegNext(...)`
-- `RegEnable(...)`
+This section is not a dump of all local signals.
+Include a signal here only if it satisfies at least one of the following:
+- It is referenced, assigned, or updated by more than one major logic section, such as FSM, pipeline, main logic subsections.
+- It holds module state or affects cross-section control flow, datapath selection, handshake timing, or behavior described in multiple later sections.
+- It is declared at Module scope so that later sections can reference the same signal consistently.
 
-For simple temporary expressions that are purely local and obvious, this section
-may omit them. Focus on internal signals that affect datapath, control flow,
-state holding, handshake timing, or later behavior descriptions.
+Do not include signals that are purely local to one FSM, one pipeline stage, one main-logic block, or one small expression.
+Such local-only intermediate signals must be declared in the corresponding local logic spec, not here.
+
+All entries in this section are module-internal signals and should be implemented as `private val` bindings in final code.
+The `Kind` column describes the underlying Chisel construction or expression category, not the Scala binding keyword.
+
+This section covers shared Chisel declarations such as:
+- Wires: `Wire(...)` and `WireDefault(...)`
+- Regs : `Reg(...)`, `RegInit(...)`, `RegNext(...)` and `RegEnable(...)`
+- Expression-derived internal signals, marked as `Derived Signal`
+
+For `Kind`:
+- Use `Wire`, `WireDefault`, `Reg`, `RegInit`, `RegNext`, or `RegEnable` for signals created by the corresponding Chisel construction.
+- Use `Derived` for expression-derived internal signals that do not directly instantiate a Wire or Reg, such as `io.in.fire && readyCond`.
+- Do not use `private val` as a `Kind`; `private val` is the expected Scala binding form for all entries, not a signal category.
 
 For `Type`:
-- Must be the complete Chisel type or construction expression.
+- Must be the complete Chisel type or construction expression or Anonymous Bundle ID.
 - Do not write incomplete types such as `UInt`; write `UInt(<width>.W)`.
 - For Vec, Bundle, or parameterized types, include complete constructor arguments.
-- The Impl AI should be able to directly reuse the type expression in code.
+- For `Derived Signal`, write the resolved Chisel type when clear, or the complete expression form if the type is expression-derived.
+- The Impl AI should be able to directly reuse the type or expression information in code.
 
 For `Initial / Default Value`:
 - For plain `Wire(...)` or `Reg(...)` without default/reset value, write `None`.
-
-For `Update / Assignment Rule`:
-- For Wire, describe how it is assigned or conditionally overridden.
-- For Reg, describe when and how it is updated after reset.
-- For `RegNext(...)` or `RegEnable(...)`, describe the next-value source and enable condition.
+- For `Derived Signal`, write `None`.
 -->
 
-| Name | Kind | Type | Initial / Default Value | Update / Assignment Rule | Description |
-|---|---|---|---|---|---|
-| `<signal-name>` | `Wire` / `WireDefault` / `Reg` / `RegInit` / `RegNext` / `RegEnable` | `<complete-chisel-type-or-construction-expression-or-anon-bundle-id>` | `<initial-or-default-value-or-None>` | `<assignment-or-update-rule>` | `<description>` |
+| Name | Kind | Type | Initial / Default Value | Description |
+|---|---|---|---|---|
+| `<signal-name>` | `Wire` / `WireDefault` / `Reg` / `RegInit` / `RegNext` / `RegEnable` / `Derived` | `<chisel-type-or-anon-bundle-id>` | `<initial-or-default-value-or-None>` | `<description>` |
 
 ---
 
