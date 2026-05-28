@@ -55,6 +55,52 @@ If this Module does not use any Bundle, write `None.` and omit all subsections.
 | Name | Meaning | Spec Path |
 |---|---|---|
 | `<bundle-name>` | `<brief-meaning>` | `new/module/bundle/b_<module-local-bundle-name>.md` |
+
+### Inline Anonymous Bundles
+
+<!--
+List inline anonymous `new Bundle { ... }` structures that are defined directly at their use site in final code.
+
+These entries are not real named Bundle definitions.
+They must not be implemented as Chisel classes, objects, or standalone Bundle files.
+They are only local anonymous Bundle references used by this `top.md` file.
+
+Use the following Anonymous Bundle ID format:
+
+`anon-bundle:<scope>/<var-name>`
+
+Recommended scopes:
+- `io` for top-level IO anonymous Bundles.
+- `wire` for anonymous Bundles used by Wire definitions.
+- `reg` for anonymous Bundles used by Reg definitions.
+- `local` for other local anonymous Bundles.
+
+For `<var-name>`, use the associated variable or IO field name directly.
+For example:
+- `anon-bundle:io/req` for `io.req`
+- `anon-bundle:wire/arbResult` for a local `arbResult` Wire
+- `anon-bundle:reg/status` for a local `status` Reg
+
+The Anonymous Bundle ID is a spec-only reference handle.
+It is intentionally not a valid Chisel type name.
+
+Omit this subsection if the Module does not use inline anonymous Bundles.
+-->
+
+#### `anon-bundle:<scope>/<var-name>`
+
+<!--
+Define the fields of this inline anonymous Bundle.
+
+This table describes the body of a local `new Bundle { ... }` expression.
+Do not add requirements, methods, helper functions, or standalone Bundle-level behavior here.
+If such content is needed, this structure should be promoted to a normal Bundle spec instead.
+-->
+
+| Field | Type | Description |
+|---|---|---|
+| `<field-name>` | `<complete-chisel-type-or-construction-expression>` | `<description>` |
+
 ---
 
 ## Parameters
@@ -83,6 +129,13 @@ For `Direction`:
 
 For `Type`:
 - Must be the complete Chisel type or construction expression used in final code. The Impl AI should be able to copy the `Type` expression into code without modification.
+- For an IO field implemented with an inline anonymous `new Bundle { ... }`:
+  - Do not expand the anonymous Bundle fields in this IO table.
+  - Do not invent a normal Bundle name.
+  - Use the corresponding Anonymous Bundle ID from `Related Bundles -> Inline Anonymous Bundles` in the `Type` column.
+  - The Anonymous Bundle ID must use the format `anon-bundle:io/<io-field-name>`.
+  - The actual anonymous Bundle fields must be defined exactly once in `Related Bundles -> Inline Anonymous Bundles`.
+  - The Impl AI must implement the referenced structure as an inline `new Bundle { ... }` expression at the IO use site, not as a standalone Bundle class or object.
 
 For `Clock Domain`:
 - If this Module has no asynchronous or cross-clock IO, use the table without `Clock Domain`.
@@ -90,7 +143,7 @@ For `Clock Domain`:
 
 | Name | Direction | Type | Clock Domain (Optional) | Description |
 |---|---|---|---|---|
-| `<io-field-name>` | `Input` / `Output` / `Flipped` / `Unflipped` | `<complete-chisel-type-or-construction-expression>` | `<clock-domain-name-or-description>` | `<description>` |
+| `<io-field-name>` | `Input` / `Output` / `Flipped` / `Unflipped` | `<complete-chisel-type-or-construction-expression-or-anon-bundle-id>` | `<clock-domain-name-or-description>` | `<description>` |
 
 ---
 
@@ -155,7 +208,7 @@ For `Update / Assignment Rule`:
 
 | Name | Kind | Type | Initial / Default Value | Update / Assignment Rule | Description |
 |---|---|---|---|---|---|
-| `<signal-name>` | `Wire` / `WireDefault` / `Reg` / `RegInit` / `RegNext` / `RegEnable` | `<complete-chisel-type-or-construction-expression>` | `<initial-or-default-value-or-None>` | `<assignment-or-update-rule>` | `<description>` |
+| `<signal-name>` | `Wire` / `WireDefault` / `Reg` / `RegInit` / `RegNext` / `RegEnable` | `<complete-chisel-type-or-construction-expression-or-anon-bundle-id>` | `<initial-or-default-value-or-None>` | `<assignment-or-update-rule>` | `<description>` |
 
 ---
 
